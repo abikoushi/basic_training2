@@ -14,7 +14,7 @@ setwd("~/Desktop/gliomaSet")
 ```
 windowsの場合
 ```{r}
-#setwd("C:/Users/koabe/Desktop/gliomaSet")
+setwd("C:/Users/koabe/Desktop/gliomaSet")
 ```
 ```{r}
 gliomaSet_express <-read.csv("gliomaSet_express.csv")
