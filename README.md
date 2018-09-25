@@ -1,4 +1,4 @@
-#練習問題
+###練習問題
 ```{r}
 x <- 1:10
 x^2
@@ -6,7 +6,7 @@ sqrt(x)
 sum(x)
 mean(x)
 ```
-#データの読み込み
+###データの読み込み
 
 mac の場合
 ```{r}
@@ -60,7 +60,7 @@ ggplot(gliomaSet,aes(x=g1,y=g2,colour=Gender))+
   geom_point()+
   scale_color_manual(values = c("royalblue","orange2")) #色を変更
 ```
-#ここから主成分分析
+###ここから主成分分析
 ```{r}
 #df_expression <- gliomaSet[,6:105]
 df_expression <-select(gliomaSet,g1:g100) #g1~g100の列だけ取り出す
@@ -79,7 +79,7 @@ pc_gli_df <-data.frame(pc_gli$x) #主成分得点を取り出す
 ggplot(pc_gli_df,aes(x=PC1,y=PC2))+ #第一、第二主成分の散布図
   geom_point()
 ```
-#ここからクラスター分析
+###ここからクラスター分析
 ```{r}
 d_expression <- dist(df_expression) #距離行列の作成
 dmat <- as.matrix(d_expression) #行列として認識させる
@@ -112,7 +112,7 @@ ggplot(gliomaSet,aes(x=cluster,fill=Status2))+
 ggplot(gliomaSet,aes(x=cluster,fill=Status2))+
   geom_bar(position = "fill") #帯グラフ（積み上げ棒グラフを割合表示に）
 ```
-#ここから生存時間分析
+###ここから生存時間分析
 ```{r}
 library(survival) 
 #生存関数の推定はsurvfit関数
@@ -131,7 +131,7 @@ sd_gli <-survdiff(Surv(Time,Status)~cluster,data = gliomaSet_surv)
 print(sd_gli)
 ```
 
-#t検定
+###t検定
 ```{r}
 res1 <- t.test(g1~Status,data=gliomaSet)
 print(res1)
@@ -154,7 +154,7 @@ which(res_pv_adj<0.05)#p値が0.05を下回るのはどの遺伝子か
 
 print(res1)
 ```
-#以下複雑な集計
+###以下複雑な集計
 ```{r}
 group_by(gliomaSet,cluster) %>% 
   summarise(mean(g1))
